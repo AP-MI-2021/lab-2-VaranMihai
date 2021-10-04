@@ -1,9 +1,4 @@
 
-a = float(input("Dati valoare temperatura: "))
-b = str(input("Din: "))
-c = str(input("In: "))
-
-
 def get_temp(a, b, c):
     '''
     Transformă o temperatură dată într-o scară dată într-o altă scară dată.
@@ -35,10 +30,9 @@ def get_temp(a, b, c):
             return a
     return a
 
-assert get_temp(100, 'C', 'F') == 212
-assert get_temp(50, 'F', 'K') == 283.15
-
-print(get_temp(a, b, c))
+def test_get_temp():
+    assert get_temp(100, 'C', 'F') == 212
+    assert get_temp(50, 'F', 'K') == 283.15
 
 def cmmdc(e, f):
     '''
@@ -60,17 +54,12 @@ def cmmdc(e, f):
             r = e % f
     return f
 
-assert cmmdc(50,16) == 2
-assert cmmdc(123,66) == 3
-assert cmmdc(40,350) == 10
-assert cmmdc(216,324) == 108
+def test_cmmdc():
+    assert cmmdc(50, 16) == 2
+    assert cmmdc(123, 66) == 3
+    assert cmmdc(40, 350) == 10
+    assert cmmdc(216, 324) == 108
 
-n = int(input("Dati valoarea lui n: "))
-tlis = []
-
-for i in range(0, n):
-    zeta = int(input("Adaugati numere in lista: "))
-    tlis.append(zeta)
 
 def get_cmmmc(tlis,n):
     '''
@@ -84,9 +73,35 @@ def get_cmmmc(tlis,n):
         cmmmc = cmmmc * tlis[i]/cmmdc(cmmmc, tlis[i])
     return int(cmmmc)
 
-assert get_cmmmc([2, 4, 8, 16], 4) == 16
-assert get_cmmmc([3, 15, 6, 5], 4) == 30
-assert get_cmmmc([20, 4, 50], 3) == 100
+def test_get_cmmmc():
+    assert get_cmmmc([2, 4, 8, 16], 4) == 16
+    assert get_cmmmc([3, 15, 6, 5], 4) == 30
+    assert get_cmmmc([20, 4, 50], 3) == 100
 
-print(get_cmmmc(tlis, n))
+
+
+while True:
+    print("1. Transforma o temperatura data intr-o alta temperatura.")
+    print("2. Determina cmmmc-ul a n numere.")
+    print("x. Ieisre")
+
+    optiune = input("Dati optiunea: ")
+    if optiune == "1":
+        a = float(input("Dati valoare temperatura: "))
+        b = str(input("Din: "))
+        c = str(input("In: "))
+
+        print(get_temp(a, b, c))
+    elif optiune == "2":
+        n = int(input("Dati valoarea lui n: "))
+        tlis = []
+
+        for i in range(0, n):
+            zeta = int(input("Adaugati numere in lista: "))
+            tlis.append(zeta)
+        print(get_cmmmc(tlis, n))
+    elif optiune == "x":
+        break
+    else:
+        print("Optiune gresita! Reincercati!")
 
